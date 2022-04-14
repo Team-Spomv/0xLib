@@ -1,6 +1,14 @@
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { FaFileUpload, FaUpload } from "react-icons/fa";
+import { useState } from "react";
+import { create } from "ipfs-http-client";
+import { useEffect } from "react";
+import { use } from "chai";
+// import Web3 from "web3";
+
+const client = create("https://ipfs.infura.io:5001/api/v0");
+// var Web3 = require("web3");
 
 const Prompt = ({
   message,
@@ -11,8 +19,59 @@ const Prompt = ({
   onChangeName,
   onChangeDescription,
   onChangeThumbnail,
+  currentAccount,
 }) => {
   const cancelButtonRef = useRef(null);
+  const [fileUrl, updateFileUrl] = useState([]);
+  const [fileData, updateFileData] = useState({
+    file: "",
+    name: "",
+    description: "",
+    thumbnail: "",
+  });
+
+  useEffect(() => {
+    localStorage.setItem("fileUrl", fileUrl);
+  }, [fileUrl]);
+  
+  const [description, updateDescription] = useState("");
+
+  onChangeDescription = (e) => {
+    updateDescription(e.target.value);
+    updateFileData({ ...fileData, description: e.target.value });
+  };
+
+  onChangeFile = async (e) => {
+    // get files
+    updateFileData({ ...fileData, file: e.target.files[0] });
+    console.log(fileData);
+    console.log(e.target.files[0]);
+    try {
+      const file = e.target.files[0];
+      const added = await client.add(file);
+      updateFileData({
+        ...fileData,
+        file: file,
+        name: fileData.file.name,
+        thumbnail: added.path,
+      });
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      updateFileUrl((prev) => [...prev, url]);
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+    }
+  };
+
+  onSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Submitting File");
+    console.log(fileData);
+    console.log(fileUrl);
+    // if (this.state.buffer) {
+    //   console.log(this.state.contract);
+    // }
+    // console.log(e.target.files);
+  };
 
   return (
     <Transition.Root show={handleOpenClose} as={Fragment}>
@@ -96,6 +155,7 @@ const Prompt = ({
                             placeholder="Choose file to upload"
                             title="Choose File from your device "
                           />
+                          {fileUrl && <img src={fileUrl} width="600px" />}
                         </div>
                         <div className="my-1">
                           <label
@@ -109,6 +169,7 @@ const Prompt = ({
                             name="title"
                             type="text"
                             required
+                            // value={file.name}
                             onChange={onChangeName}
                             className="appearance-none relative block w-full px-2 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="File Name"
@@ -126,6 +187,7 @@ const Prompt = ({
                             name="description"
                             type="text"
                             required
+                            value={description}
                             onChange={onChangeDescription}
                             className="appearance-none relative block w-full px-2 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="Description"

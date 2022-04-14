@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import Prompt from "../components/UploadPrompt";
 import Pagination from "../components/Pagination";
 
-const LandingPage = ({ connectWallet, currentAccount, data }) => {
+const LandingPage = ({ connectWallet, currentAccount, setCurrentAccount, data }) => {
   let PageSize = 12;
   const [listView, setListView] = useState(false);
   const [uploadPrompt, setUploadPrompt] = useState(false);
@@ -288,6 +288,8 @@ const LandingPage = ({ connectWallet, currentAccount, data }) => {
         </div>
       </div>
       <Prompt
+        setCurrentAccount={setCurrentAccount}
+        currentAccount={currentAccount}
         handleOpenClose={uploadPrompt}
         onClose={() => setUploadPrompt(false)}
       />
