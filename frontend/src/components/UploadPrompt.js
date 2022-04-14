@@ -90,6 +90,7 @@ const Prompt = ({
                             id="file"
                             name="file"
                             type="file"
+                            accept=".doc,.docx,.xml,.pdf,.odt,.txt,.html,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                             required
                             onChange={onChangeFile}
                             className="appearance-none relative block w-full px-2 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -141,6 +142,7 @@ const Prompt = ({
                           <input
                             id="thumbnail"
                             name="thumbnail"
+                            accept="image/*"
                             type="file"
                             required
                             onChange={onChangeThumbnail}

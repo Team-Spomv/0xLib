@@ -1,6 +1,6 @@
 import { Popover } from "@headlessui/react";
 import { FaList, FaTh, FaUpload } from "react-icons/fa";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Prompt from "../components/UploadPrompt";
 import Pagination from "../components/Pagination";
 
@@ -11,6 +11,10 @@ const LandingPage = ({ connectWallet, currentAccount, data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchField, setSearchField] = useState("");
   const [files, setFiles] = useState(data);
+
+  const getStartedRef = useRef(null);
+
+  const executeScroll = () => getStartedRef.current.scrollIntoView();
 
   const searchFile = files.filter((f) =>
     f.title.toLowerCase().includes(searchField.toLowerCase())
@@ -33,11 +37,11 @@ const LandingPage = ({ connectWallet, currentAccount, data }) => {
 
   return (
     <>
-      <div className="relative bg-white overflow-hidden z-5">
+      <div className="relative bg-white dark:bg-slate-900  overflow-hidden z-5">
         <div className="max-w-7xl mx-auto">
-          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+          <div className="relative z-10 pb-8 bg-white dark:bg-slate-900 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
             <svg
-              className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
+              className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white dark:text-slate-900 transform translate-x-1/2"
               fill="currentColor"
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
@@ -68,19 +72,22 @@ const LandingPage = ({ connectWallet, currentAccount, data }) => {
             {!currentAccount && (
               <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                 <div className="sm:text-center lg:text-left">
-                  <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                    <span className="block text-gray-600 xl:inline">
+                  <h1 className="text-4xl tracking-tight font-extrabold dark:text-gray-200 text-gray-900 sm:text-5xl md:text-6xl">
+                    <span className="block dark:text-gray-200 text-gray-600 xl:inline">
                       NestCoin Library
                     </span>
                   </h1>
-                  <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                  <p className="mt-3 text-base text-gray-500 dark:text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                     A highly competitive game competition focusing on blockchain
                     technology and how to leverage it for solving real life
                     problems.
                   </p>
                   <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                     <div className="rounded-md shadow">
-                      <button className="w-full outline-none flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                      <button
+                        onClick={executeScroll}
+                        className="w-full outline-none flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                      >
                         Get started
                       </button>
                     </div>
@@ -108,14 +115,17 @@ const LandingPage = ({ connectWallet, currentAccount, data }) => {
           </div>
         )}
       </div>
-      <div className="antialiased font-sans ">
+      <div
+        className="antialiased font-sans dark:bg-slate-900"
+        ref={getStartedRef}
+      >
         <div className="container mx-auto px-4 sm:px-8">
           <div className="py-8">
             <div className="px-4 md:px-10 py-4 md:py-7">
               <div className="flex items-center justify-between">
                 <p
                   tabIndex="0"
-                  className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800"
+                  className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 dark:text-gray-200"
                 >
                   Files
                 </p>
@@ -257,14 +267,14 @@ const LandingPage = ({ connectWallet, currentAccount, data }) => {
                             />
                           </div>
 
-                          <div className="hover:text-purple-500 text-gray-800 font-semibold">
+                          <div className="hover:text-purple-500 dark:hover:text-purple-500 text-gray-800 dark:text-gray-200 font-semibold">
                             {" "}
                             {f.title}{" "}
                           </div>
 
                           <div
                             href="#"
-                            className="hover:text-purple-500 text-sm text-gray-400 -mt-1"
+                            className="hover:text-purple-500 dark:hover:text-purple-500 text-sm dark:text-gray-200 text-gray-400 -mt-1"
                           >
                             {" "}
                             {f.size}kb{" "}
@@ -283,6 +293,41 @@ const LandingPage = ({ connectWallet, currentAccount, data }) => {
                   currentPage={currentPage}
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="2xl:mx-auto 2xl:container dark:bg-slate-900  py-16">
+        <img
+          src="https://media.istockphoto.com/photos/television-studio-virtual-studio-set-ideal-for-green-screen-picture-id1282679892?k=20&m=1282679892&s=612x612&w=0&h=bgptekMns8FmHaCaK6yuzTzIx5TgGZvvEdgqG8ReexY="
+          alt="library"
+          class="w-full h-full absolute z-0 hidden xl:block"
+        />
+        <img
+          src="https://media.istockphoto.com/photos/television-studio-virtual-studio-set-ideal-for-green-screen-picture-id1282679892?k=20&m=1282679892&s=612x612&w=0&h=bgptekMns8FmHaCaK6yuzTzIx5TgGZvvEdgqG8ReexY="
+          alt="library"
+          class="w-full h-full absolute z-0 hidden sm:block xl:hidden"
+        />
+        <img
+          src="https://media.istockphoto.com/photos/television-studio-virtual-studio-set-ideal-for-green-screen-picture-id1282679892?k=20&m=1282679892&s=612x612&w=0&h=bgptekMns8FmHaCaK6yuzTzIx5TgGZvvEdgqG8ReexY="
+          alt="library"
+          class="w-full h-full absolute z-0 sm:hidden"
+        />
+        <div class="w-full relative flex items-center justify-center">
+          <div class="bg-gray-800 bg-opacity-80 md:my-16 lg:py-16 py-10 w-full md:mx-24 md:px-12 px-4 flex flex-col items-center justify-center relative z-40">
+            <h1 class="text-4xl font-semibold leading-9 text-indigo-500 text-center">
+              Learn More Here!
+            </h1>
+            <p class="text-base leading-normal text-center text-gray-200 mt-6">
+              Pidoxy Emmanuel put some learn more contents
+              here...............................
+              ..............................................................................................
+            </p>
+            <div class=" flex-col sm:flex-row flex items-center justify-center lg:w-5/12 w-full mt-12 space-y-4 sm:space-y-0">
+              <button className="w-full flex outline-none items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+                Get Started
+              </button>
             </div>
           </div>
         </div>
