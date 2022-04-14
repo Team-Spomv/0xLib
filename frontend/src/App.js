@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./App.css";
+import "./App.css";
 import Homepage from "./pages/Homepage";
 import LandingPage from "./pages/LandingPage";
 import files from "./fakeFile";
