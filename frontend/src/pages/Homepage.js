@@ -48,10 +48,10 @@ const Homepage = ({ currentAccount, data }) => {
     setFiles(data);
   }, [currentAccount]);
   return (
-    <div className="dark:bg-slate-900 h-screen">
-      <div className="relative bg-white dark:bg-slate-900 p-1">
+    <>
+      <div className="relative bg-white p-1">
         <div className="max-w-7xl mx-auto">
-          <div className="relative  pb-8 bg-white dark:bg-slate-900   lg:w-full">
+          <div className="relative  pb-8 bg-white   lg:w-full">
             <Popover>
               <div className="pt-6 px-4 sm:px-6 lg:px-8 ">
                 <nav
@@ -67,7 +67,7 @@ const Homepage = ({ currentAccount, data }) => {
                         </h1>
                       </a>
                       <div className="-mr-2 flex items-center md:hidden">
-                        <Popover.Button className="bg-white dark:bg-slate-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                           <span className="sr-only">Open main menu</span>
 
                           <FaBars className="block h-6 w-6" />
@@ -102,7 +102,7 @@ const Homepage = ({ currentAccount, data }) => {
                   focus
                   className="absolute z-10  top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
                 >
-                  <div className="rounded-lg shadow-md dark:bg-slate-900 bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+                  <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                     <div className="px-5 pt-4 flex items-center justify-between">
                       <div>
                         <h1 className="h-8 w-auto text-xl font-extrabold text-indigo-600">
@@ -110,7 +110,7 @@ const Homepage = ({ currentAccount, data }) => {
                         </h1>
                       </div>
                       <div className="-mr-2">
-                        <Popover.Button className="bg-white dark:bg-slate-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                           <span className="sr-only">Close main menu</span>
 
                           <FaTimesCircle className="block h-6 w-6" />
@@ -119,12 +119,9 @@ const Homepage = ({ currentAccount, data }) => {
                     </div>
                     <div className="px-6  space-y-1">
                       <FaWallet className="fa-solid fa-wallet text-gray-400 h-6 w-6 mr-2" />
-                      <p className="text-gray-400">
-                        {`${currentAccount.slice(
-                          0,
-                          4
-                        )}... ${currentAccount.slice(-4)}`}
-                      </p>
+                      {`${currentAccount.slice(0, 4)}... ${currentAccount.slice(
+                        -4
+                      )}`}
                       <button className="block      px-3 outline-none     rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"></button>
                     </div>
                     <button className="font-medium px-6 pb-2 outline-none text-indigo-600 hover:text-indigo-500">
@@ -137,7 +134,7 @@ const Homepage = ({ currentAccount, data }) => {
           </div>
         </div>
       </div>
-      <div className="antialiased font-sans dark:bg-slate-900 ">
+      <div className="antialiased font-sans ">
         <div className="container mx-auto px-3 sm:px-2">
           <div className="py-2">
             <div className="px-4 md:px-2 py-4 md:py-7">
@@ -177,6 +174,7 @@ const Homepage = ({ currentAccount, data }) => {
                     <select
                       aria-label="select"
                       className="focus:text-indigo-600 focus:outline-none bg-transparent ml-1"
+                      onSel
                     >
                       <option className="text-sm text-indigo-800">
                         Latest
@@ -231,27 +229,27 @@ const Homepage = ({ currentAccount, data }) => {
                 </p>
               </button>
               <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                {/* {listView && (
+                {listView && (
                   <table className="min-w-full leading-normal">
                     <thead>
                       <tr>
-                        <th className="px-5 py-3 border-b-2 dark:bg-slate-900 dark:border-slate-700 dark:text-gray-200 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                           Files
                         </th>
-                        <th className="px-5 py-3 border-b-2 dark:bg-slate-900 dark:border-slate-700 dark:text-gray-200 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                           Description
                         </th>
-                        <th className="px-5 py-3 border-b-2 dark:bg-slate-900 dark:border-slate-700 dark:text-gray-200 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                           size
                         </th>
-                        <th className="px-5 py-3 border-b-2 dark:bg-slate-900 dark:border-slate-700 dark:text-gray-200 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></th>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></th>
                       </tr>
                     </thead>
                     <tbody>
                       {searchFile.map((f) => (
                         <tr key={f.title + f._id}>
                           <td
-                            className={`px-5 py-5 border-b dark:bg-slate-900 dark:border-slate-700  bg-white text-sm bg-clip-padding bg-opacity-60 border border-gray-200`}
+                            className={`px-5 py-5 border-b  bg-white text-sm bg-clip-padding bg-opacity-60 border border-gray-200`}
                           >
                             <div className="flex items-center">
                               <div className="flex-shrink-0 w-10 h-10">
@@ -262,29 +260,29 @@ const Homepage = ({ currentAccount, data }) => {
                                 />
                               </div>
                               <div className="ml-3">
-                                <p className="hover:text-indigo-600 dark:hover:text-indigo-600 cursor-pointer dark:text-gray-200  text-gray-800 text-sm font-semibold whitespace-no-wrap">
+                                <p className="hover:text-indigo-600 cursor-pointer  text-gray-800 text-sm font-semibold whitespace-no-wrap">
                                   {f.title}
                                 </p>
                               </div>
                             </div>
                           </td>
-                          <td className="px-5 py-5 border-b border-gray-200 dark:border-slate-700 dark:text-gray-200 dark:bg-slate-900 bg-white text-sm">
-                            <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">
                               {f.description}
                             </p>
                           </td>
-                          <td className="px-5 py-5 border-b border-gray-200 dark:border-slate-700 dark:text-gray-200 dark:bg-slate-900 bg-white text-sm">
-                            <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap hover:text-indigo-600 dark:hover:text-indigo-600">
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap hover:text-indigo-600">
                               {f.size}kb
                             </p>
                           </td>
-                          <td className="px-5 py-5 border-b dark:bg-slate-900 border-gray-200 dark:border-slate-700 bg-white text-sm">
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                               <span className="relative">
                                 {" "}
                                 <FaShare
                                   onClick={() => setSharePrompt(true)}
-                                  className="h-4 w-4 mx-1 cursor-pointer dark:text-gray-200 text-gray-600 hover:text-indigo-600 dark:hover:text-indigo-600"
+                                  className="h-4 w-4 mx-1 cursor-pointer text-gray-600 hover:text-indigo-600"
                                 />
                               </span>
                             </span>
@@ -293,7 +291,7 @@ const Homepage = ({ currentAccount, data }) => {
                       ))}
                     </tbody>
                   </table>
-                )} */}
+                )}
                 {!listView && (
                   <div className=" flex items-center justify-center">
                     <div className="grid lg:grid-cols-6 md:grid-cols-4  sm:grid-cols-3 grid-cols-2 gap-2">
@@ -310,17 +308,17 @@ const Homepage = ({ currentAccount, data }) => {
                             />
                           </div>
                           <div className="flex justify-between">
-                            <div className="hover:text-indigo-600 dark:hover:text-purple-500 dark:text-gray-300  text-gray-800 text-sm font-semibold">
+                            <div className="hover:text-indigo-600  text-gray-800 text-sm font-semibold">
                               {" "}
                               {f.title}{" "}
                             </div>
                             <FaShare
                               onClick={() => setSharePrompt(true)}
-                              className="h-4 w-4 mx-1 text-gray-500 dark:hover:text-purple-500 dark:text-gray-300 hover:text-indigo-600"
+                              className="h-4 w-4 mx-1 text-gray-500 hover:text-indigo-600"
                             />
                           </div>
 
-                          <div className="hover:text-indigo-500 dark:hover:text-purple-500 dark:text-gray-300 text-sm text-gray-500 -mt-1">
+                          <div className="hover:text-indigo-500 text-sm text-gray-500 -mt-1">
                             {" "}
                             {f.size}kb{" "}
                           </div>
@@ -352,7 +350,7 @@ const Homepage = ({ currentAccount, data }) => {
         onClose={() => setSharePrompt(false)}
         message="You are about to share your private file with another user "
       />
-    </div>
+    </>
   );
 };
 
