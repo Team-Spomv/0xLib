@@ -33,7 +33,7 @@ const Prompt = ({
   useEffect(() => {
     localStorage.setItem("fileUrl", fileUrl);
   }, [fileUrl]);
-  
+
   const [description, updateDescription] = useState("");
 
   onChangeDescription = (e) => {
@@ -56,7 +56,7 @@ const Prompt = ({
         thumbnail: added.path,
       });
       const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-      updateFileUrl((prev) => [...prev, url]);
+      updateFileUrl(url);
     } catch (error) {
       console.log("Error uploading file: ", error);
     }
