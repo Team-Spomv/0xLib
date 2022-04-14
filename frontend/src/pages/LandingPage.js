@@ -4,7 +4,12 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import Prompt from "../components/UploadPrompt";
 import Pagination from "../components/Pagination";
 
-const LandingPage = ({ connectWallet, currentAccount, setCurrentAccount, data }) => {
+const LandingPage = ({
+  connectWallet,
+  currentAccount,
+  setCurrentAccount,
+  data,
+}) => {
   let PageSize = 12;
   const [listView, setListView] = useState(false);
   const [uploadPrompt, setUploadPrompt] = useState(false);
@@ -298,33 +303,68 @@ const LandingPage = ({ connectWallet, currentAccount, setCurrentAccount, data })
         </div>
       </div>
 
-      <div class="2xl:mx-auto 2xl:container dark:bg-slate-900  py-16">
+      <div className="2xl:mx-auto 2xl:container dark:bg-slate-900  py-16">
         <img
           src="https://media.istockphoto.com/photos/television-studio-virtual-studio-set-ideal-for-green-screen-picture-id1282679892?k=20&m=1282679892&s=612x612&w=0&h=bgptekMns8FmHaCaK6yuzTzIx5TgGZvvEdgqG8ReexY="
           alt="library"
-          class="w-full h-full absolute z-0 hidden xl:block"
+          className="w-full h-full absolute z-0 hidden xl:block"
         />
         <img
           src="https://media.istockphoto.com/photos/television-studio-virtual-studio-set-ideal-for-green-screen-picture-id1282679892?k=20&m=1282679892&s=612x612&w=0&h=bgptekMns8FmHaCaK6yuzTzIx5TgGZvvEdgqG8ReexY="
           alt="library"
-          class="w-full h-full absolute z-0 hidden sm:block xl:hidden"
+          className="w-full h-full absolute z-0 hidden sm:block xl:hidden"
         />
         <img
           src="https://media.istockphoto.com/photos/television-studio-virtual-studio-set-ideal-for-green-screen-picture-id1282679892?k=20&m=1282679892&s=612x612&w=0&h=bgptekMns8FmHaCaK6yuzTzIx5TgGZvvEdgqG8ReexY="
           alt="library"
-          class="w-full h-full absolute z-0 sm:hidden"
+          className="w-full h-full absolute z-0 sm:hidden"
         />
-        <div class="w-full relative flex items-center justify-center">
-          <div class="bg-gray-800 bg-opacity-80 md:my-16 lg:py-16 py-10 w-full md:mx-24 md:px-12 px-4 flex flex-col items-center justify-center relative z-40">
-            <h1 class="text-4xl font-semibold leading-9 text-indigo-500 text-center">
+        <div className="w-full relative flex items-center justify-center">
+          <div className="bg-gray-800 bg-opacity-80 md:my-16 lg:py-16 py-10 w-full md:mx-24 md:px-12 px-4 flex flex-col items-center justify-center relative z-40">
+            <h1 className="text-4xl font-semibold leading-9 text-indigo-500 text-center">
               Learn More Here!
             </h1>
-            <p class="text-base leading-normal text-center text-gray-200 mt-6">
-              Pidoxy Emmanuel put some learn more contents
-              here...............................
-              ..............................................................................................
+            <h2 className="text-2xl font-semibold leading-9 text-white py-3 text-center">
+              What Is 0xLib
+            </h2>
+            <p className="text-base leading-normal text-center text-gray-200 mt-6">
+              0xLib is a decentralized library that allows users to upload
+              files, retrieve files and share files with other users. 0xLib as a
+              decentralized solution would mean it’s blockchain-based and uses
+              IPFS (InterPlanetary File System), the only decentralized system
+              using peer-to-peer networking. All other file systems are based on
+              IPFS Brainstorming we tried to figure out first how this idea
+              would be a user go to in reality and so we came up with a little
+              prototype to test how visible things would be.
             </p>
-            <div class=" flex-col sm:flex-row flex items-center justify-center lg:w-5/12 w-full mt-12 space-y-4 sm:space-y-0">
+            <h2 className="text-2xl font-semibold leading-9 text-white py-3 text-center">
+              The Service 0xLib Provides To Users
+            </h2>
+            <p className="text-base leading-normal text-center text-gray-200 mt-6">
+              With 0xLib we want to provide a solution as effective as standing
+              web2 solutions such as google drive, one drive, and even better we
+              want users to rest assured that their data has not encroached.
+              Naturally, no one owns the blockchain and so no own can prey on
+              user’s data in that regard unlike standing web3 solutions but the
+              fact that it’s an open solution posed a challenge as every
+              transaction(upload in this case) is public, users would not want
+              their data public So we chose to allow the users to upload files
+              publicly and if they want to upload privately (by logging in
+              (connecting their wallets)) we would scramble their data or hash
+              it before uploading(using an algorithm or we create an application
+              for this) and rehash when users want to download their files again
+              We have some security concerns with this and would be addressing
+              them
+            </p>
+            <h2 className="text-2xl font-semibold leading-9 text-white py-5 text-center">
+                Cutting Edge Technology
+            </h2>
+            <p className="text-base leading-normal text-center text-gray-200 mt-6">
+              This method of storing and retrieving files is still relatively
+              new and there are many limitations, our solution is one of the
+              best right now and we are keen on making it better
+            </p>
+            <div className=" flex-col sm:flex-row flex items-center justify-center lg:w-5/12 w-full mt-12 space-y-4 sm:space-y-0">
               <button className="w-full flex outline-none items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
                 Get Started
               </button>
