@@ -10,7 +10,7 @@ const Pagination = (props) => {
   */
     return Array.from({ length }, (_, idx) => idx + start);
   };
-  const { itemsCount, pageSize, onNext,onPrevious, currentPage } = props;
+  const { itemsCount, pageSize, onNext, onPrevious, currentPage } = props;
 
   const pagesCount = Math.ceil(itemsCount / pageSize);
 
@@ -19,7 +19,7 @@ const Pagination = (props) => {
   const pages = range(1, pagesCount + 1);
 
   return (
-    <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+    <div className="px-5 py-5 dark:bg-slate-900 bg-white border-t dark:border-slate-800 flex flex-col xs:flex-row items-center xs:justify-between          ">
       <span className="text-xs xs:text-sm text-gray-900">
         Showing 1 to 4 of 50 Entries
       </span>
