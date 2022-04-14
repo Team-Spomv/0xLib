@@ -52,10 +52,10 @@ const App = () => {
               href="https://blockgames.gg"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-grow justify-center align-middle self-center text-sm text-gray-200"
+              className="flex flex-grow justify-center align-middle self-center text-sm dark:text-gray-200 text-gray-500"
             >
               Powered by{" "}
-              <h1 className="text-white ml-2 font-bold text-sm self-center">
+              <h1 className="text-gray-500 dark:text-gray-200 ml-2 font-bold text-sm self-center">
                 Blockgames
               </h1>
             </a>
